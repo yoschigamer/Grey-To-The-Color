@@ -7,42 +7,46 @@
     <title>Document</title>
 </head>
 <body>
-    <section>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <section id='contaigner' style="top: auto; left: auto;">
         <img class="img_grey" src="./Img.jpg" alt="img_grey">
-        <div id="cursor">
+        <div id="cursor" style="width: 200px; height: 200px;">
             <img id="img" src="./Img.jpg" alt="img_color">
         </div>
         <style>
-            html, body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
+            #contaigner {
+                display: block;
+                position: absolute;
             }
 
-            section {
-                display: flex;
-            }
-
-            img {
+            #contaigner img {
                 width: 500px;
                 height: auto;
                 border-radius: 10px;
-                position:absolute;
+            }
+
+            #img { 
+                position: absolute;
             }
 
             #cursor {
-                position:absolute;
-                z-index: 1;
-                width: 100px;
-                height: 100px;
                 background-color: aliceblue;
                 overflow: hidden;
                 border-radius: 20px;
-            }
-            .img_grey {
                 position: absolute;
+            }
+
+            .img_grey {
                 filter: grayscale();
             }
         </style>
@@ -50,13 +54,13 @@
             document.addEventListener('mousemove', function (a) {
                 cursor = document.getElementById('cursor')
                 img = document.getElementById('img')
-                style = window.getComputedStyle(cursor)
-                var posx = a.clientX - parseInt(style.getPropertyValue("width"))/ 2;
-                var posy = a.clientY - parseInt(style.getPropertyValue("height"))/ 2;
-                cursor.style.top = `${posy}px` 
-                cursor.style.left = `${posx}px`
-                img.style.top = `-${posy}px`
-                img.style.left = `-${posx}px`
+                contaigner = document.getElementById('contaigner')
+                var posx = a.clientX;
+                var posy = a.clientY/*- parseInt(style.getPropertyValue("height"))/ 2*/;
+                cursor.style.top = `calc(${posy}px - ${contaigner.offsetTop}px - ${cursor.style.height} / 2)`
+                cursor.style.left = `calc(${posx}px - ${contaigner.offsetLeft}px - ${cursor.style.width} / 2)`
+                img.style.top = `calc(-${posy}px + ${contaigner.offsetTop}px + ${cursor.style.height} / 2)`
+                img.style.left = `calc(-${posx}px + ${contaigner.offsetLeft}px + ${cursor.style.width} / 2)`
             });
             </script>
     </section>
