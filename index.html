@@ -4,24 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
     <title>Document</title>
 </head>
 <body>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+
     <section id='contaigner' style="top: auto; left: auto;">
-        <img class="img_grey" src="./Img.jpg" alt="img_grey">
+        <img draggable="false" class="img_grey" src="./Img.jpg" alt="img_grey">
         <div id="cursor" style="width: 200px; height: 200px;">
-            <img id="img" src="./Img.jpg" alt="img_color">
+            <img draggable="false" id="img" src="./Img.jpg" alt="img_color">
         </div>
         <style>
             #contaigner {
@@ -33,6 +24,7 @@
                 width: 500px;
                 height: auto;
                 border-radius: 10px;
+                cursor: none;
             }
 
             #img { 
@@ -40,7 +32,8 @@
             }
 
             #cursor {
-                background-color: aliceblue;
+                background-image: url(/1024px-Xbox_one_logo.svg.png) cover;
+                background-color: transparent;
                 overflow: hidden;
                 border-radius: 20px;
                 position: absolute;
